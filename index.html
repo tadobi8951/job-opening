@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Send Location</title>
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    (function() {
-      emailjs.init("S7S_iRAJVFq1WxDPU"); // Replace with your EmailJS user ID
-    })();
-  </script>
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "S7S_iRAJVFq1WxDPU",
+      });
+   })();
+</script>
   <style>
     body { font-family: Arial, sans-serif; padding: 2em; }
     button { padding: 1em; font-size: 16px; }
